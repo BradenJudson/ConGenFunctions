@@ -20,21 +20,19 @@
 df2pmat <- \(df, var, grp1, grp2) {
 
   df_mat <- as.data.frame.matrix(stats::xtabs(as.formula(paste(var, "~", grp1, "+", grp2)), data = df))
-  mrow   <- colnames(df_mat)[!colnames(df_mat) %in% rownames(df_mat)]; print(mrow)
-  mcol   <- rownames(df_mat)[!rownames(df_mat) %in% colnames(df_mat)]; print(mcol)
+  mrow   <- colnames(df_mat)[!colnames(df_mat) %in% rownames(df_mat)]
+  mcol   <- rownames(df_mat)[!rownames(df_mat) %in% colnames(df_mat)]
 
-  adjmat <- rbind(df_mat %>%
-                    mutate({{mcol}} := 0) %>%
-                    relocate({{mcol}}, 1),
-                        as.data.frame(matrix(data = 0,
-                                             nrow = 1,
-                                             ncol = ncol(df_mat) + 1,
+  adjmat <- rbind(as.data.frame(matrix(data = 0,
+                                       nrow = 1,
+                                       ncol = ncol(df_mat) + 1,
                                        dimnames = list(c(mrow), c(colnames(df_mat), mcol))),
-                                       row.names = mrow))
+                                       row.names = mrow),
+                  df_mat %>% mutate({{mcol}} := 0))
 
   # Make it so the matrix is symmetrical across the diagonal.
-  adjmat[lower.tri(adjmat)] <- t(adjmat)[lower.tri(adjmat)]
+  adjmat[upper.tri(adjmat)] <- t(adjmat)[upper.tri(adjmat)]
   diag(adjmat) <- NA # Make the diagonal NAs instead of 0s.
   return(adjmat)
-}
 
+}
