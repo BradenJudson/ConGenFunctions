@@ -13,3 +13,5 @@ Imports:
     dplyr,
     magrittr,
     rlang
+URL: https://github.com/BradenJudson/ConGenFunctions
+BugReports: https://github.com/BradenJudson/ConGenFunctions/issues
