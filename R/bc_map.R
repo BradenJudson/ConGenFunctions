@@ -11,7 +11,7 @@
 #'
 
 map <- \(xmin, xmax, ymin, ymax, water_colour, na_inset) {
-  data(sysdata, envir=environment())
+  data(base_map, envir=environment())
   map <- base_map +
     coord_sf(xlim = c(xmin, xmax),
              ylim = c(ymin, ymax)) +
