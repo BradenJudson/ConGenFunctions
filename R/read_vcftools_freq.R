@@ -17,10 +17,10 @@ read_frq <- \(file) {
                                   "N_CHR", "Ancestral",
                                   "Alternative")) %>%
     filter(Ancestral != "{ALLELE:FREQ}") %>%
-    mutate(MajAF  = as.numeric(sub(".*:", "", Ancestral)),
-           MajNuc = as.factor(substr(Ancestral, start = 0, stop = 1)),
-           MinAF  = as.numeric(sub(".*:", "", Alternative)),
-           MinNuc = as.factor(substr(Alternative, start = 0, stop = 1))) %>%
+    mutate(ref_af  = as.numeric(sub(".*:", "", Ancestral)),
+           ref_nuc = as.factor(substr(Ancestral, start = 0, stop = 1)),
+           alt_af  = as.numeric(sub(".*:", "", Alternative)),
+           alt_nuc = as.factor(substr(Alternative, start = 0, stop = 1))) %>%
     dplyr::select(!c("Ancestral", "Alternative", "N_CHR", "N_ALLELES"))
 
 }
