@@ -34,5 +34,4 @@ df2pmat <- \(df, var, grp1, grp2) {
   adjmat[upper.tri(adjmat)] <- t(adjmat)[upper.tri(adjmat)]
   diag(adjmat) <- NA # Make the diagonal NAs instead of 0s.
   return(adjmat)
-
 }

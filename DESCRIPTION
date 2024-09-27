@@ -12,6 +12,12 @@ RoxygenNote: 7.3.2
 Imports: 
     dplyr,
     magrittr,
-    rlang
+    rlang,
+    ggplot2,
+    cowplot,
+    sf
 URL: https://github.com/BradenJudson/ConGenFunctions
 BugReports: https://github.com/BradenJudson/ConGenFunctions/issues
+Depends: 
+    R (>= 2.10)
+LazyData: true
