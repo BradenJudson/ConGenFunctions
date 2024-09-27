@@ -6,7 +6,7 @@
 #'
 #' @import dplyr
 #' @importFrom readr read_table
-#' @return
+#' @return Tidy dataframe.
 #' @export
 #'
 
