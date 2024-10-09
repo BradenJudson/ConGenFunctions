@@ -7,11 +7,11 @@
 #' @param plot1 The main ggplot object.
 #' @param plot2 A ggplot object to be inset.
 #' @param location The corner the inset plot is assigned to (must be one of "bl", "br", "tl", "tr").
-#' @param h Height of the inset plot (as a % of the main plot size).
-#' @param w Width of the inset plot (as a % of the main plot size).
+#' @param height Height of the inset plot (as a % of the main plot size).
+#' @param width Width of the inset plot (as a % of the main plot size).
 #'
 #' @return A ggplot object.
-#' @import cowplot
+#' @import patchwork
 #' @import ggplot2
 #' @export
 

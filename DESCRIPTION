@@ -14,7 +14,7 @@ Imports:
     magrittr,
     rlang,
     ggplot2,
-    cowplot,
+    patchwork,
     readr
 URL: https://github.com/BradenJudson/ConGenFunctions
 BugReports: https://github.com/BradenJudson/ConGenFunctions/issues

@@ -4,7 +4,7 @@
 \alias{insettr}
 \title{Inset plots with ggplot2}
 \usage{
-insettr(plot1, plot2, location, h, w)
+insettr(plot1, plot2, location, height, width)
 }
 \arguments{
 \item{plot1}{The main ggplot object.}
@@ -13,9 +13,9 @@ insettr(plot1, plot2, location, h, w)
 
 \item{location}{The corner the inset plot is assigned to (must be one of "bl", "br", "tl", "tr").}
 
-\item{h}{Height of the inset plot (as a \% of the main plot size).}
+\item{height}{Height of the inset plot (as a \% of the main plot size).}
 
-\item{w}{Width of the inset plot (as a \% of the main plot size).}
+\item{width}{Width of the inset plot (as a \% of the main plot size).}
 }
 \value{
 A ggplot object.
