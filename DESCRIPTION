@@ -13,7 +13,9 @@ Imports:
     dplyr,
     magrittr,
     rlang,
-    ggplot2
+    ggplot2,
+    cowplot,
+    readr
 URL: https://github.com/BradenJudson/ConGenFunctions
 BugReports: https://github.com/BradenJudson/ConGenFunctions/issues
 Depends: 
