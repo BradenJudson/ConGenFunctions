@@ -21,7 +21,7 @@ insettr <- \(plot1, plot2, location, height, width) {
   x <- substr(location, 2, 2)
 
   plot1 + inset_element(
-    plot1,
+    plot2,
     left = if(x == "l") 0.01 else (0.99 - width),
     bottom = if(y == "b") 0.01 else (0.99 - height),
     right = if(x == "r") 0.99 else (0.01 + width),
