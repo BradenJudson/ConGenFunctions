@@ -15,19 +15,17 @@
 #' @import ggplot2
 #' @export
 
-insettr <- \(plot1, plot2, location, h, w) {
+insettr <- \(plot1, plot2, location, height, width) {
 
   y <- substr(location, 1, 1)
   x <- substr(location, 2, 2)
 
-  ggdraw(plot = plot1) +
-    draw_plot(
-      plot = plot2,
-      x = if(x == "l") 0.06 else 0.98 ,
-      y = if(y == "t") 0.98 else 0.06,
-      width = w, height = h,
-      vjust = if(y == "t") 1 else 0,
-      hjust = if(x == "l") 0 else 1
-    )
+  plot1 + inset_element(
+    plot1,
+    left = if(x == "l") 0.01 else (0.99 - width),
+    bottom = if(y == "b") 0.01 else (0.99 - height),
+    right = if(x == "r") 0.99 else (0.01 + width),
+    top = if(y == "t") 0.99 else (0.01 + height)
+  )
 
 }
