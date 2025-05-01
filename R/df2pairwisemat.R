@@ -6,33 +6,27 @@
 #' @param var Column name containing the value of interest (to populate the matrix).
 #' @param grp1 Grouping variable column 1 (e.g., population).
 #' @param grp2 Grouping variable column 2 (e.g., population).
+#' @param diag Value to fill in the diagonal (default is 0).
 #'
 #' @return Distance matrix of the class Matrix.
 #' @import rlang
-#' @importFrom stats xtabs
 #' @importFrom stats as.formula
 #' @importFrom dplyr mutate
-#' @importFrom dplyr relocate
-#' @importFrom magrittr '%>%'
 #' @importFrom rlang .data
 #' @export
 
-df2pmat <- \(df, var, grp1, grp2) {
+df2pmat <- \(df, var, grp1, grp2, diag) {
 
-  df_mat <- as.data.frame.matrix(stats::xtabs(as.formula(paste(var, "~", grp1, "+", grp2)), data = df))
-  mrow   <- colnames(df_mat)[!colnames(df_mat) %in% rownames(df_mat)]
-  mcol   <- rownames(df_mat)[!rownames(df_mat) %in% colnames(df_mat)]
+  matrix_names <- sort(unique(as.character(unlist(df[c(grp1, grp2)]))))
 
-  adjmat <- rbind(df_mat %>% mutate({{mcol}} := 0) %>%
-                    relocate({{mcol}}, 1),
-                  as.data.frame(matrix(data = 0,
-                                       nrow = 1,
-                                       ncol = ncol(df_mat) + 1,
-                                       dimnames = list(c(mrow), c(colnames(df_mat), mcol))),
-                                row.names = mrow))
+  mat <- matrix(0, length(matrix_names), length(matrix_names),
+                dimnames = list(matrix_names, matrix_names))
 
-  # Make it so the matrix is symmetrical across the diagonal.
-  adjmat[lower.tri(adjmat)] <- t(adjmat)[lower.tri(adjmat)]
-  diag(adjmat) <- NA # Make the diagonal NAs instead of 0s.
-  return(adjmat)
+  mat[as.matrix(df[c(grp1, grp2)])] <- df[[var]]
+  mat[as.matrix(df[c(grp2, grp1)])] <- df[[var]]
+
+  diag <- if (missing(diag)) { 0 } else { diag }
+
+  diag(mat) <- diag
+  return(mat)
 }
